@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import Mapbox
 
 class ViewController: UIViewController {
+    
+    private var mapView: MGLMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // initialize the map view
+        let url = NSURL(string: "asset://styles/light-v8.json")
+        mapView = MGLMapView(frame: view.bounds, styleURL: url)
+        mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        // set the map's center coordinate
+        mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: 38.894368,
+            longitude: -77.036487),
+            zoomLevel: 15, animated: false)
+        view.addSubview(mapView)
     }
 
     override func didReceiveMemoryWarning() {
